@@ -36,13 +36,13 @@
             <div class="bg-blue-500 rounded-xl p-6">
                 <h1 class="text-3xl text-white">Please Deposit</h1>
                 <input id="deposit-field" type="text" class="w-9/12 block mt-2 px-3 py-1 rounded" name="" placeholder="$amount you want to deposit">
-                <button id="button-deposit" class="bg-sky-800 font-semibold block mt-2 px-8 py-2 text-white font-medium rounded">Submit</button>
+                <button id="button-deposit" class="bg-sky-800 font-semibold block mt-2 px-8 py-2 text-white font-medium rounded">Deposit</button>
 
             </div>
             <div class="bg-blue-500 rounded-xl p-6">
                 <h1 class="text-3xl text-white">Please Withdraw</h1>
-                <input type="text" class="w-9/12 block mt-2 px-3 py-1 rounded" name="" id="withdraw-field" placeholder="$amount you want do withdraw">
-                <button id="button-withdraw" class="bg-sky-800 font-semibold block mt-2 px-8 py-2 text-white font-medium rounded">Submit</button>
+                <input id="withdraw-field" type="text" class="w-9/12 block mt-2 px-3 py-1 rounded" name="" placeholder="$amount you want do withdraw">
+                <button id="button-withdraw" class="bg-sky-800 font-semibold block mt-2 px-8 py-2 text-white font-medium rounded">Withdraw</button>
             </div>
         </div>
      </section>
@@ -71,6 +71,38 @@
             depositField.value="";
 
         })
+    </script>
+    <script>
+         // step1:call btn function
+        document.getElementById("button-withdraw").addEventListener("click",function(){
+            // // step2:call input form withdraw field
+            const withdrawField=document.getElementById("withdraw-field");
+            const newWithdrawFieldString=withdrawField.value;
+            const newWithdrewAmount=parseFloat(newWithdrawFieldString);
+            // step:3  get current withdraw
+            const withdrawTotal=document.getElementById("withdraw-total");
+            const previousWithdrawTotalString=withdrawTotal.innerText;
+            const previousWithdrawTotal=parseFloat(previousWithdrawTotalString);
+            
+
+
+             // step4:addTotal deposit
+             console.log(previousWithdrawTotal,newWithdrewAmount);
+             const currentWithdrawTotal=previousWithdrawTotal+newWithdrewAmount;
+             console.log(currentWithdrawTotal);
+              withdrawTotal.innerText= currentWithdrawTotal;
+              
+             // step5:get current total withdraw balance(total-balance call)
+             const balanceTotalElement=document.getElementById("balance-total");
+             const previousBalanceElementString=balanceTotalElement.innerText;
+             const previousBalance=parseFloat(previousBalanceElementString);
+
+                 // step 6:calculate total balance
+                 const newBalanceTotal=previousBalance-newWithdrewAmount;
+                 balanceTotalElement.innerText=newBalanceTotal;
+
+        })
+
     </script>
 </body>
 </html>
